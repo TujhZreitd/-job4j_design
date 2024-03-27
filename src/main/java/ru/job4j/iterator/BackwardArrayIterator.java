@@ -8,11 +8,8 @@ public class BackwardArrayIterator implements Iterator<Integer> {
     private int point;
 
     public BackwardArrayIterator(int[] data) {
-        this.data = new int[data.length];
-        for (int i = 0; i < data.length; i++) {
-            this.data[i] = data[i];
-            point++;
-        }
+        this.data = data;
+        point = data.length;
     }
 
     @Override
