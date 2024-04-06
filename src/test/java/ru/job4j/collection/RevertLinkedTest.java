@@ -35,4 +35,3 @@ class RevertLinkedTest {
         assertThat(linked).containsSequence(4, 3, 2, 1);
     }
 }
-/**/
