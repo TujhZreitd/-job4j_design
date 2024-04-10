@@ -19,7 +19,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
 
     @Override
     public boolean put(K key, V value) {
-        if ((float) count / capacity >= LOAD_FACTOR) {
+        if (count * 1.0 / capacity >= LOAD_FACTOR) {
             expand();
         }
         boolean result = false;
@@ -35,7 +35,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
     }
 
     private int hash(int hashCode) {
-        return hashCode == 0 ? 0 : hashCode ^ (hashCode >>> 16);
+        return hashCode ^ (hashCode >>> 16);
     }
 
     private int indexFor(int hash) {
@@ -46,13 +46,17 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
         return indexFor(hash(Objects.hashCode(key)));
     }
 
+    private boolean comparisonKey(K key) {
+        int index = index(key);
+        return Objects.hashCode(table[index].key) == Objects.hashCode(key) && Objects.equals(table[index].key, key);
+    }
+
     private void expand() {
         capacity *= 2;
         MapEntry<K, V>[] newTable = new MapEntry[capacity];
         for (MapEntry<K, V> n : table) {
             if (n != null) {
-                int newIndex = index(n.key);
-                newTable[newIndex] = new MapEntry<>(n.key, n.value);
+                newTable[index(n.key)] = n;
             }
         }
         table = newTable;
@@ -61,10 +65,9 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
     @Override
     public V get(K key) {
         V result = null;
-        int index = index(key);
-        if (table[index] != null) {
-            if (Objects.hashCode(table[index].key) == Objects.hashCode(key) && Objects.equals(table[index].key, key)) {
-                result = table[index].value;
+        if (table[index(key)] != null) {
+            if (comparisonKey(key)) {
+                result = table[index(key)].value;
             }
         }
         return result;
@@ -73,10 +76,9 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
     @Override
     public boolean remove(K key) {
         boolean result = false;
-        int index = index(key);
-        if (table[index] != null) {
-            if (Objects.hashCode(table[index].key) == Objects.hashCode(key) && Objects.equals(table[index].key, key)) {
-                table[index] = null;
+        if (table[index(key)] != null) {
+            if (comparisonKey(key)) {
+                table[index(key)] = null;
                 result = true;
                 count--;
                 modCount++;
