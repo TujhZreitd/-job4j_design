@@ -44,4 +44,7 @@ public class LogFilter {
     public static void main(String[] args) {
         new LogFilter("data/log.txt").saveTo("data/404.txt");
     }
+    /*
+    для повторного коммита
+     */
 }
