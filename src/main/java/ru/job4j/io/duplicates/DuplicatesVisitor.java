@@ -21,10 +21,11 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
                                      BasicFileAttributes attributes) throws IOException {
         FileProperty newFile = new FileProperty(size(file), file.toFile().getName());
         if (!files.containsKey(newFile)) {
-            files.put(newFile, new ArrayList<>(List.of(file)));
+            files.computeIfAbsent(newFile, s -> new ArrayList<>(List.of(file)));
         } else {
             files.get(newFile).add(file);
         }
+
         return super.visitFile(file, attributes);
     }
 }
