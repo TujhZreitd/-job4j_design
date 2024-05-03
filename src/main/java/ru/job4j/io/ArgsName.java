@@ -8,13 +8,10 @@ public class ArgsName {
     private final Map<String, String> values = new HashMap<>();
 
     public String get(String key) {
-        String result;
-        if (values.containsKey(key)) {
-            result = values.get(key);
-        } else {
+        if (!values.containsKey(key)) {
             throw new IllegalArgumentException(String.format("This key: '%s' is missing", key));
         }
-        return result;
+        return values.get(key);
     }
 
     private void parse(String[] args) {
