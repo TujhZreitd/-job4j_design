@@ -22,15 +22,21 @@ public class Search {
     }
 
     public static void validateMethod(String[] args) {
-        if (args.length == 0) {
-            throw new IllegalArgumentException(String.format("Root folder is null. Usage  ROOT_FOLDER"));
+        if (args.length != 2) {
+            throw new IllegalArgumentException(String.format("Must be two arguments"));
         }
         Path start = Path.of(args[0]);
-        if (!start.toFile().exists()) {
-            throw new IllegalArgumentException(String.format("Not exist %s", start.toFile().getAbsoluteFile()));
+        if (!Files.exists(start)) {
+            throw new IllegalArgumentException(String.format("Not exists %s", start.toAbsolutePath()));
         }
-        if (!start.toFile().isDirectory()) {
-            throw new IllegalArgumentException(String.format("Not directory %s", start.toFile().getAbsoluteFile()));
+        if (!Files.isDirectory(start)) {
+            throw new IllegalArgumentException(String.format("Not directory %s", start.toAbsolutePath()));
+        }
+        if (!args[1].startsWith(".")) {
+            throw new IllegalArgumentException(String.format("Absent character '.' in %s", args[1]));
+        }
+        if (args[1].length() < 2) {
+            throw new IllegalArgumentException(String.format("Absent extension %s", args[1]));
         }
     }
 }
