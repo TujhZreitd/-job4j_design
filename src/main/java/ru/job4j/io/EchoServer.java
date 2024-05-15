@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class EchoServer {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         try (ServerSocket server = new ServerSocket(9000)) {
             while (!server.isClosed()) {
                 Socket socket = server.accept();
@@ -13,16 +13,14 @@ public class EchoServer {
                      BufferedReader input = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     output.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
-                    String[] msg = input.readLine()
-                            .replace("GET /?", "")
-                            .replace(" HTTP/1.1", "")
-                            .split("=");
-                    if ("Bye".equals(msg[1])) {
+                    if (input.readLine().contains("msg=Bye")) {
                         server.close();
                     }
                     output.flush();
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
