@@ -16,14 +16,10 @@ public class EchoServer {
                              new InputStreamReader(socket.getInputStream()))) {
                     output.write("HTTP/1.1 200 OK\r\n\r\n");
                     String firstString = input.readLine();
-                    String[] msg = firstString
-                            .replace("GET /?", "")
-                            .replace(" HTTP/1.1", "")
-                            .split("=");
-                    if ("Exit".equals(msg[1])) {
+                    if (firstString.contains("msg=Exit")) {
                         server.close();
                     } else {
-                        output.write(msg[1]);
+                        output.write(firstString.substring(firstString.indexOf("=") + 1, firstString.lastIndexOf(" ")));
                     }
                     output.flush();
                 }
