@@ -10,7 +10,7 @@ public class Json {
         Employee employeeFirst = new Employee(true,
                 35,
                 "Anton",
-                new Car("Nissan", "red"),
+                new Car1("Nissan", "red"),
                 new String[]{"Worker", "Married"});
         Gson gson = new GsonBuilder().create();
         String employeeGson = gson.toJson(employeeFirst);
@@ -24,10 +24,10 @@ class Employee {
     private final boolean bestEmployee;
     private final int age;
     private final String name;
-    private final Car car;
+    private final Car1 car;
     private final String[] status;
 
-    public Employee(boolean bestEmployee, int age, String name, Car car, String[] status) {
+    public Employee(boolean bestEmployee, int age, String name, Car1 car, String[] status) {
         this.bestEmployee = bestEmployee;
         this.age = age;
         this.name = name;
@@ -47,11 +47,11 @@ class Employee {
     }
 }
 
-class Car {
+class Car1 {
     private final String model;
     private final String color;
 
-    public Car(String model, String color) {
+    public Car1(String model, String color) {
         this.model = model;
         this.color = color;
     }
