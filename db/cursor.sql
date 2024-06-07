@@ -11,3 +11,6 @@ MOVE FORWARD 15 from cursor_products_scroll;
 MOVE BACKWARD 7 from cursor_products_scroll;
 MOVE BACKWARD 2 from cursor_products_scroll;
 MOVE BACKWARD 1 from cursor_products_scroll;
+
+CLOSE cursor_products_scroll;
+COMMIT;
