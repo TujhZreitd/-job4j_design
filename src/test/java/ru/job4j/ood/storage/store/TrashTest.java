@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import ru.job4j.ood.storage.food.Bread;
 import ru.job4j.ood.storage.food.Food;
 import ru.job4j.ood.storage.food.Meat;
-import ru.job4j.ood.storage.food.Milk;
 
 import java.time.LocalDate;
 
