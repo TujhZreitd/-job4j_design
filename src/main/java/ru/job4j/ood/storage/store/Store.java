@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface Store {
 
-    boolean add(Food food);
+    boolean add(Food food, String dateToday);
 
     boolean delete(Food food);
 

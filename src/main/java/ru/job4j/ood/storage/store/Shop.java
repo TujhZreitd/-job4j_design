@@ -9,9 +9,9 @@ public class Shop extends AbstractStore {
     private static final double DISCOUNT = 0.2;
 
     @Override
-    public boolean add(Food food) {
+    public boolean add(Food food, String dateToday) {
         boolean result = false;
-        double index = indexStore(food);
+        double index = indexStore(food, dateToday);
         if (index >= INDEX_ADD && index < INDEX_ADD_WITH_DISCOUNT) {
             store.add(food);
             result = true;

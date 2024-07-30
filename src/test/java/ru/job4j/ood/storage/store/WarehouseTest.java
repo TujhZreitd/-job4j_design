@@ -13,6 +13,7 @@ class WarehouseTest {
     @Test
     void whenAddNecessaryProducts() {
         Store store = new Warehouse();
+        String dateToday = "2024-07-27";
         Food milk1 = new Milk(
                 "Milk 3.2%",
                 LocalDate.of(2024, 7, 31),
@@ -23,8 +24,8 @@ class WarehouseTest {
                 LocalDate.of(2024, 7, 31),
                 LocalDate.of(2024, 7, 28),
                 300.0);
-        store.add(milk1);
-        store.add(milk2);
+        store.add(milk1, dateToday);
+        store.add(milk2, dateToday);
         assertThat(milk1).isEqualTo(store.findByName("Milk 3.2%"));
         assertThat(milk2).isEqualTo(store.findByName("Milk 1.0%"));
     }
@@ -32,6 +33,7 @@ class WarehouseTest {
     @Test
     void whenAddNotNecessaryProducts() {
         Store store = new Warehouse();
+        String dateToday = "2024-07-27";
         Food blackBread = new Bread(
                 "blackBread",
                 LocalDate.of(2024, 7, 30),
@@ -42,8 +44,8 @@ class WarehouseTest {
                 LocalDate.of(2024, 7, 29),
                 LocalDate.of(2024, 7, 25),
                 100.0);
-        store.add(blackBread);
-        store.add(whiteBread);
+        store.add(blackBread, dateToday);
+        store.add(whiteBread, dateToday);
         assertThat(store.findByName("blackBread")).isNull();
         assertThat(store.findByName("whiteBread")).isNull();
     }

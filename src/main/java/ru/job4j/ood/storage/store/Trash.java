@@ -6,9 +6,9 @@ public class Trash extends AbstractStore {
     private static final double INDEX_ADD = 1;
 
     @Override
-    public boolean add(Food food) {
+    public boolean add(Food food, String dateToday) {
         boolean result = false;
-        if (indexStore(food) >= INDEX_ADD) {
+        if (indexStore(food, dateToday) >= INDEX_ADD) {
             store.add(food);
             result = true;
         }

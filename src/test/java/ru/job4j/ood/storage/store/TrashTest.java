@@ -13,18 +13,20 @@ class TrashTest {
     @Test
     void whenAddNecessaryProducts() {
         Store store = new Trash();
+        String dateToday = "2024-07-27";
         Food meat = new Meat(
                 "Meat",
                 LocalDate.of(2024, 7, 26),
                 LocalDate.of(2024, 7, 1),
                 1000.0);
-        store.add(meat);
+        store.add(meat, dateToday);
         assertThat(meat).isEqualTo(store.findByName("Meat"));
     }
 
     @Test
     void whenAddNotNecessaryProducts() {
         Store store = new Trash();
+        String dateToday = "2024-07-27";
         Food blackBread = new Bread(
                 "blackBread",
                 LocalDate.of(2024, 7, 30),
@@ -35,8 +37,8 @@ class TrashTest {
                 LocalDate.of(2024, 7, 29),
                 LocalDate.of(2024, 7, 25),
                 100.0);
-        store.add(blackBread);
-        store.add(whiteBread);
+        store.add(blackBread, dateToday);
+        store.add(whiteBread, dateToday);
         assertThat(store.findByName("blackBread")).isNull();
         assertThat(store.findByName("whiteBread")).isNull();
     }

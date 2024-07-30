@@ -13,6 +13,7 @@ class ShopTest {
     @Test
     void whenAddNecessaryProducts() {
         Store store = new Shop();
+        String dateToday = "2024-07-27";
         Food blackBread = new Bread(
                 "blackBread",
                 LocalDate.of(2024, 7, 30),
@@ -23,8 +24,8 @@ class ShopTest {
                 LocalDate.of(2024, 7, 29),
                 LocalDate.of(2024, 7, 25),
                 100.0);
-        store.add(blackBread);
-        store.add(whiteBread);
+        store.add(blackBread, dateToday);
+        store.add(whiteBread, dateToday);
         assertThat(blackBread).isEqualTo(store.findByName("blackBread"));
         assertThat(whiteBread).isEqualTo(store.findByName("whiteBread"));
     }
@@ -32,6 +33,7 @@ class ShopTest {
     @Test
     void whenAddWithReplacePrice() {
         Store store = new Shop();
+        String dateToday = "2024-07-28";
         Food whiteBread = new Bread(
                 "whiteBread",
                 LocalDate.of(2024, 7, 29),
@@ -39,7 +41,7 @@ class ShopTest {
                 100.0);
         assertThat(0.0).isEqualTo(whiteBread.getDiscount());
         assertThat(100.0).isEqualTo(whiteBread.getPrice());
-        store.add(whiteBread);
+        store.add(whiteBread, dateToday);
         assertThat(0.2).isEqualTo(store.findByName("whiteBread").getDiscount());
         assertThat(80.0).isEqualTo(store.findByName("whiteBread").getPrice());
     }
@@ -47,6 +49,7 @@ class ShopTest {
     @Test
     void whenAddNotNecessaryProducts() {
         Store store = new Shop();
+        String dateToday = "2024-07-27";
         Food milk1 = new Milk(
                 "Milk 3.2%",
                 LocalDate.of(2024, 7, 31),
@@ -57,8 +60,8 @@ class ShopTest {
                 LocalDate.of(2024, 7, 31),
                 LocalDate.of(2024, 7, 28),
                 300.0);
-        store.add(milk1);
-        store.add(milk2);
+        store.add(milk1, dateToday);
+        store.add(milk2, dateToday);
         assertThat(store.findByName("milk1")).isNull();
         assertThat(store.findByName("milk2")).isNull();
     }

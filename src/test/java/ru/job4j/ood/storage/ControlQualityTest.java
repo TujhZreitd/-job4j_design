@@ -53,7 +53,8 @@ class ControlQualityTest {
         foods.add(blackBread);
         foods.add(whiteBread);
         ControlQuality controlQuality = new ControlQuality();
-        controlQuality.addForStores(foods, stores);
+        String dateToday = "2024-07-27";
+        controlQuality.addForStores(foods, stores, dateToday);
         assertThat(milk).isEqualTo(storeWare.findByName("Milk"));
         assertThat(blackBread).isEqualTo(storeShop.findByName("blackBread"));
         assertThat(whiteBread).isEqualTo(storeShop.findByName("whiteBread"));

@@ -11,10 +11,10 @@ public abstract class AbstractStore implements Store {
 
     protected final List<Food> store = new ArrayList<>();
 
-    public double indexStore(Food food) {
+    public double indexStore(Food food, String dateToday) {
         LocalDate createDate = food.getCreateDate();
         LocalDate expiryDate = food.getExpiryDate();
-        LocalDate todayDate = LocalDate.now();
+        LocalDate todayDate = LocalDate.parse(dateToday);
         double countDayLife = Period.between(createDate, expiryDate).getDays();
         double countDayFromCreate = Period.between(createDate, todayDate).getDays();
         return countDayFromCreate / countDayLife;
