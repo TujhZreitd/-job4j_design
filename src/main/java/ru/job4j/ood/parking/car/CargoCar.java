@@ -14,4 +14,5 @@ public class CargoCar extends Car {
         }
         return size;
     }
+    /*для повторного коммита*/
 }
