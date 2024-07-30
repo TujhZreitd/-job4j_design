@@ -6,4 +6,3 @@ public class Parking extends AbstractParking {
     }
 
 }
-/*для повторного коммита*/

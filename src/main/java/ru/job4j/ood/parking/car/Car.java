@@ -24,5 +24,4 @@ public abstract class Car {
                 + "size = " + size
                 + '}';
     }
-    /*для повторного коммита*/
 }

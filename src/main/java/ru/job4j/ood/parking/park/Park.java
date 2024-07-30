@@ -14,4 +14,3 @@ public interface Park {
     List<Car> findAll();
 
 }
-/*для повторного коммита*/
