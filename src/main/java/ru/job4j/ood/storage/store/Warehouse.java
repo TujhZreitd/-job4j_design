@@ -15,3 +15,4 @@ public class Warehouse extends AbstractStore {
         return result;
     }
 }
+/*для повторного коммита*/

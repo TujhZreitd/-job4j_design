@@ -15,3 +15,4 @@ public interface Store {
     Food findByName(String name);
 
 }
+/*для повторного коммита*/

@@ -24,3 +24,4 @@ public class Shop extends AbstractStore {
         return result;
     }
 }
+/*для повторного коммита*/

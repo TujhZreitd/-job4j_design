@@ -41,3 +41,4 @@ public abstract class AbstractStore implements Store {
         return res;
     }
 }
+/*для повторного коммита*/

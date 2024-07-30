@@ -15,3 +15,4 @@ public class Trash extends AbstractStore {
         return result;
     }
 }
+/*для повторного коммита*/

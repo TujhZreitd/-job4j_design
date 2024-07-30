@@ -23,3 +23,4 @@ public class ControlQuality {
         }
     }
 }
+/*для повторного коммита*/
