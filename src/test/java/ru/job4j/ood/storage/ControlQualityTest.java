@@ -61,4 +61,49 @@ class ControlQualityTest {
         assertThat(meat).isEqualTo(storeTrash.findByName("Meat"));
     }
 
+    @Test
+    void whenUseResort() {
+        Store storeWare = new Warehouse();
+        Store storeShop = new Shop();
+        Store storeTrash = new Trash();
+        Food milk = new Milk(
+                "Milk",
+                LocalDate.of(2024, 7, 31),
+                LocalDate.of(2024, 7, 28),
+                500.0);
+        Food meat = new Meat(
+                "Meat",
+                LocalDate.of(2024, 7, 26),
+                LocalDate.of(2024, 7, 1),
+                1000.0);
+        Food blackBread = new Bread(
+                "blackBread",
+                LocalDate.of(2024, 7, 30),
+                LocalDate.of(2024, 7, 26),
+                100.0);
+        Food whiteBread = new Bread(
+                "whiteBread",
+                LocalDate.of(2024, 7, 29),
+                LocalDate.of(2024, 7, 25),
+                100.0);
+        List<Store> stores = new ArrayList<>();
+        stores.add(storeWare);
+        stores.add(storeShop);
+        stores.add(storeTrash);
+        List<Food> foods = new ArrayList<>();
+        foods.add(milk);
+        foods.add(meat);
+        foods.add(blackBread);
+        foods.add(whiteBread);
+        ControlQuality controlQuality = new ControlQuality();
+        String dateToday = "2024-07-28";
+        controlQuality.addForStores(foods, stores, dateToday);
+        String newDateToday = "2024-07-29";
+        controlQuality.resortForStores(stores, newDateToday);
+        assertThat(milk).isEqualTo(storeShop.findByName("Milk"));
+        assertThat(blackBread).isEqualTo(storeShop.findByName("blackBread"));
+        assertThat(0.2).isEqualTo(storeShop.findByName("blackBread").getDiscount());
+        assertThat(whiteBread).isEqualTo(storeTrash.findByName("whiteBread"));
+        assertThat(meat).isEqualTo(storeTrash.findByName("Meat"));
+    }
 }

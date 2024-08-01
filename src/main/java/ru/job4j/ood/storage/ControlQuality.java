@@ -2,6 +2,8 @@ package ru.job4j.ood.storage;
 
 import ru.job4j.ood.storage.food.Food;
 import ru.job4j.ood.storage.store.Store;
+
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,5 +24,19 @@ public class ControlQuality {
             addForStore(foods, store, dateToday);
         }
     }
+
+    private List<Food> extractionForStore(Store store) {
+        List<Food> result = store.findAll();
+        store.deleteAll();
+        return result;
+    }
+
+    public void resortForStores(List<Store> stores, String dateToday) {
+        List<Food> extractionFoods = new ArrayList<>();
+        for (Store store : stores) {
+            extractionFoods.addAll(extractionForStore(store));
+        }
+        addForStores(extractionFoods, stores, dateToday);
+    }
 }
-/*для повторного коммита*/
+
